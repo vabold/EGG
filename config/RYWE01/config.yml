@@ -1,0 +1,5 @@
+object: orig/RYWE01/sys/main.dol
+hash: 7a45e56500a435d97e80438915d944c14dc67f9c
+symbols: config/RYWE01/symbols.txt
+splits: config/RYWE01/splits.txt
+mw_comment_version: 14
