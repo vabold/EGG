@@ -28,8 +28,9 @@ from tools.project import (
 )
 
 # Game versions
-DEFAULT_VERSION = 0  # BBA: WD has a debug linker map - target that primarily
+DEFAULT_VERSION = 1  # BBA: WD has a debug linker map - target that primarily
 VERSIONS = [
+    "RSPE01",  # Wii Sports (USA, Rev 1)
     "RYWE01",  # Big Brain Academy: Wii Degree (USA)
     "RMCP01",  # Mario Kart Wii (PAL)
     "SOUE01",  # The Legend of Zelda: Skyward Sword (USA, Rev 0)
@@ -37,6 +38,7 @@ VERSIONS = [
 
 
 class EGGApp(IntEnum):
+    OGWS = VERSIONS.index("RSPE01")
     BBA_WD = VERSIONS.index("RYWE01")
     MKW = VERSIONS.index("RMCP01")
     LOZ_SS = VERSIONS.index("SOUE01")
@@ -45,6 +47,8 @@ class EGGApp(IntEnum):
 # Specifies year/month for EGG_VERSION per game
 def get_build_version_number(version_num: int) -> str:
     match version_num:
+        case EGGApp.OGWS:
+            return "200611L"
         case EGGApp.BBA_WD:
             return "200704L"
         case EGGApp.MKW:
@@ -58,7 +62,7 @@ def get_build_version_number(version_num: int) -> str:
 # Specifies linker version per game
 def get_config_linker_version(version_num: int) -> str:
     match version_num:
-        case EGGApp.BBA_WD:
+        case EGGApp.OGWS | EGGApp.BBA_WD:
             return "GC/3.0a5.2"
         case EGGApp.MKW:
             return "Wii/0x4201_127"
