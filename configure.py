@@ -33,6 +33,7 @@ VERSIONS = [
     "RSPE01",  # Wii Sports (USA, Rev 1)
     "RYWE01",  # Big Brain Academy: Wii Degree (USA)
     "RMCP01",  # Mario Kart Wii (PAL)
+    "RUUE01",  # Animal Crossing: City Folk (USA, Rev 0)
     "SOUE01",  # The Legend of Zelda: Skyward Sword (USA, Rev 0)
 ]
 
@@ -41,6 +42,7 @@ class EGGApp(IntEnum):
     OGWS = VERSIONS.index("RSPE01")
     BBA_WD = VERSIONS.index("RYWE01")
     MKW = VERSIONS.index("RMCP01")
+    AC_CF = VERSIONS.index("RUUE01")
     LOZ_SS = VERSIONS.index("SOUE01")
 
 
@@ -53,6 +55,8 @@ def get_build_version_number(version_num: int) -> str:
             return "200704L"
         case EGGApp.MKW:
             return "200804L"
+        case EGGApp.AC_CF:
+            return "200811L"
         case EGGApp.LOZ_SS:
             return "201111L"
         case _:
@@ -62,7 +66,8 @@ def get_build_version_number(version_num: int) -> str:
 # Specifies linker version per game
 def get_config_linker_version(version_num: int) -> str:
     match version_num:
-        case EGGApp.OGWS | EGGApp.BBA_WD:
+        # AC_CF's linker version isn't known. Guess based on build strings
+        case EGGApp.OGWS | EGGApp.BBA_WD | EGGApp.AC_CF:
             return "GC/3.0a5.2"
         case EGGApp.MKW:
             return "Wii/0x4201_127"

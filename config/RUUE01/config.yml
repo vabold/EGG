@@ -1,0 +1,5 @@
+object: orig/RUUE01/sys/main.dol
+hash: c87967b9ac0a943ba04ac16d875f5f79b4c46516
+symbols: config/RUUE01/symbols.txt
+splits: config/RUUE01/splits.txt
+mw_comment_version: 14
