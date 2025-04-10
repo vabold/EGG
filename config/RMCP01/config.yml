@@ -1,0 +1,5 @@
+object: orig/RMCP01/sys/main.dol
+hash: ac7d72448630ade7655fc8bc5fd7a6543cb53a49
+symbols: config/RMCP01/symbols.txt
+splits: config/RMCP01/splits.txt
+mw_comment_version: 14
