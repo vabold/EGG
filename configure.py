@@ -31,11 +31,13 @@ from tools.project import (
 DEFAULT_VERSION = 0  # BBA: WD has a debug linker map - target that primarily
 VERSIONS = [
     "RYWE01",  # Big Brain Academy: Wii Degree (USA)
+    "SOUE01",  # The Legend of Zelda: Skyward Sword (USA, Rev 0)
 ]
 
 
 class EGGApp(IntEnum):
     BBA_WD = VERSIONS.index("RYWE01")
+    LOZ_SS = VERSIONS.index("SOUE01")
 
 
 # Specifies year/month for EGG_VERSION per game
@@ -43,6 +45,8 @@ def get_build_version_number(version_num: int) -> str:
     match version_num:
         case EGGApp.BBA_WD:
             return "200704L"
+        case EGGApp.LOZ_SS:
+            return "201111L"
         case _:
             raise ValueError("Version number must correspond to EGGApp entry")
 
@@ -52,6 +56,8 @@ def get_config_linker_version(version_num: int) -> str:
     match version_num:
         case EGGApp.BBA_WD:
             return "GC/3.0a5.2"
+        case EGGApp.LOZ_SS:
+            return "Wii/1.5"
         case _:
             raise ValueError("Version number must correspond to EGGApp entry")
 

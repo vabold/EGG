@@ -14,6 +14,7 @@ The goal of this repository is to provide one set of source files supporting all
 Supported versions:
 
 - `RYWE01`: Big Brain Academy: Wii Degree (USA)
+- `SOUE01`: The Legend of Zelda: Skyward Sword (USA, Rev 0)
 
 Dependencies
 ============
