@@ -14,6 +14,10 @@ Sections:
 	.sdata2     type:rodata align:32
 	.sbss2      type:bss align:32
 
+egg/core/eggDisposer.cpp:
+	.text       start:0x800AC048 end:0x800AC110
+	.data       start:0x80398458 end:0x80398468
+
 Runtime.PPCEABI.H/__init_cpp_exceptions.cpp:
 	.text       start:0x800B2288 end:0x800B22F8
 	.ctors      start:0x80355080 end:0x80355084 rename:.ctors$10

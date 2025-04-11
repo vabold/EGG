@@ -77,6 +77,51 @@ def get_config_linker_version(version_num: int) -> str:
             raise ValueError("Version number must correspond to EGGApp entry")
 
 
+# Specifies compiler flags per game
+def get_egg_compiler_flags(version_num: int) -> List[str]:
+    base_flags = [
+        "-nodefaults",
+        "-proc gekko",
+        "-align powerpc",
+        "-enum int",
+        "-fp hardware",
+        "-Cpp_exceptions off",
+        # "-W all",
+        "-O4,p",
+        "-inline auto",
+        '-pragma "cats off"',
+        '-pragma "warn_notinlined off"',
+        "-maxerrors 1",
+        "-nosyspath",
+        "-RTTI off",
+        "-fp_contract on",
+        "-str reuse",
+        "-enc SJIS",
+        "-i include",
+        f"-i build/{config.version}/include",
+        f"-DEGG_VERSION={get_build_version_number(version_num)}",
+        f"-DVERSION_{config.version}",
+    ]
+
+    match version_num:
+        case EGGApp.OGWS | EGGApp.BBA_WD | EGGApp.LOZ_SS:
+            return [
+                *base_flags,
+            ]
+        case EGGApp.MKW:
+            return [
+                *base_flags,
+                "-func_align=4"
+            ]
+        case EGGApp.AC_CF:
+            return [
+                *base_flags,
+                "-RTTI on",
+            ]
+        case _:
+            raise ValueError("Version number must correspond to EGGApp entry")
+
+
 parser = argparse.ArgumentParser()
 parser.add_argument(
     "mode",
@@ -243,7 +288,6 @@ cflags_base = [
     "-enc SJIS",
     "-i include",
     f"-i build/{config.version}/include",
-    f"-DEGG_VERSION={get_build_version_number(version_num)}",
     f"-DVERSION_{config.version}",
 ]
 
@@ -319,6 +363,15 @@ config.libs = [
             Object(NonMatching, "Runtime.PPCEABI.H/__init_cpp_exceptions.cpp"),
         ],
     },
+    {
+        "lib": "EGG",
+        "mw_version": config.linker_version,
+        "cflags": get_egg_compiler_flags(version_num),
+        "progress_category": "egg",
+        "objects": [
+            Object(Matching, "egg/core/eggDisposer.cpp"),
+        ],
+    },
 ]
 
 
@@ -342,7 +395,7 @@ def link_order_callback(module_id: int, objects: List[str]) -> List[str]:
 # Optional extra categories for progress tracking
 # Adjust as desired for your project
 config.progress_categories = [
-    ProgressCategory("game", "Game Code"),
+    ProgressCategory("egg", "EGG Library Code"),
     ProgressCategory("sdk", "SDK Code"),
 ]
 config.progress_each_module = args.verbose
