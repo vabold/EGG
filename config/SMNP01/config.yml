@@ -1,0 +1,5 @@
+object: orig/SMNP01/sys/main.dol
+hash: 0b4cebde1fc6d47d3148fa357d384c46feb0b9e8
+splits: config/SMNP01/splits.txt
+symbols: config/SMNP01/symbols.txt
+mw_comment_version: 14

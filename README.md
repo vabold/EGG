@@ -17,6 +17,7 @@ Supported versions:
 - `RSPE01`: Wii Sports (USA, Rev 1)
 - `RUUE01`: Animal Crossing: City Folk (USA, Rev 0)
 - `RYWE01`: Big Brain Academy: Wii Degree (USA)
+- `SMNP01`: New Super Mario Bros. Wii (PAL, Rev 1)
 - `SOUE01`: The Legend of Zelda: Skyward Sword (USA, Rev 0)
 
 Dependencies
