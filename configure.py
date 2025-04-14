@@ -34,6 +34,7 @@ VERSIONS = [
     "RYWE01",  # Big Brain Academy: Wii Degree (USA)
     "RMCP01",  # Mario Kart Wii (PAL)
     "RFNE01",  # Wii Fit (USA, Rev 1)
+    "R64E01",  # Wii Music (USA)
     "RUUE01",  # Animal Crossing: City Folk (USA, Rev 0)
     "SMNP01",  # New Super Mario Bros. Wii (PAL, Rev 1)
     "SOUE01",  # The Legend of Zelda: Skyward Sword (USA, Rev 0)
@@ -45,6 +46,7 @@ class EGGApp(IntEnum):
     BBA_WD = VERSIONS.index("RYWE01")
     MKW = VERSIONS.index("RMCP01")
     WF = VERSIONS.index("RFNE01")
+    WM = VERSIONS.index("R64E01")
     AC_CF = VERSIONS.index("RUUE01")
     NSMBW = VERSIONS.index("SMNP01")
     LOZ_SS = VERSIONS.index("SOUE01")
@@ -61,6 +63,8 @@ def get_build_version_number(version_num: int) -> str:
             return "200804L"
         case EGGApp.WF:
             return "200805L"
+        case EGGApp.WM:
+            return "200810L"
         case EGGApp.AC_CF:
             return "200811L"
         case EGGApp.NSMBW:
@@ -79,7 +83,7 @@ def get_config_linker_version(version_num: int) -> str:
             return "GC/3.0a5.2"
         case EGGApp.MKW:
             return "Wii/0x4201_127"
-        case EGGApp.NSMBW:
+        case EGGApp.WM | EGGApp.NSMBW:
             return "Wii/1.1"
         case EGGApp.LOZ_SS:
             return "Wii/1.5"
@@ -114,7 +118,14 @@ def get_egg_compiler_flags(version_num: int) -> List[str]:
     ]
 
     match version_num:
-        case EGGApp.OGWS | EGGApp.BBA_WD | EGGApp.WF | EGGApp.NSMBW | EGGApp.LOZ_SS:
+        case (
+            EGGApp.OGWS
+            | EGGApp.BBA_WD
+            | EGGApp.WF
+            | EGGApp.WM
+            | EGGApp.NSMBW
+            | EGGApp.LOZ_SS
+        ):
             return [
                 *base_flags,
             ]
