@@ -15,6 +15,7 @@ Supported versions:
 
 - `R64E01`: Wii Music (USA)
 - `RFNE01`: Wii Fit (USA, Rev 1)
+- `RHAE01`: Wii Play (USA, Rev 1)
 - `RMCP01`: Mario Kart Wii (PAL)
 - `RSPE01`: Wii Sports (USA, Rev 1)
 - `RUUE01`: Animal Crossing: City Folk (USA, Rev 0)

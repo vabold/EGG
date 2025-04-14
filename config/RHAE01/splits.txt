@@ -1,0 +1,26 @@
+Sections:
+	.init       type:code align:4
+	extab       type:rodata align:32
+	extabindex  type:rodata align:4
+	.text       type:code align:4
+	.ctors      type:rodata align:32
+	.dtors      type:rodata align:32
+	.BINARY     type:rodata align:32
+	.rodata     type:rodata align:64
+	.data       type:data align:32
+	.bss        type:bss align:128
+	.sdata      type:data align:8
+	.sbss       type:bss align:32
+	.sdata2     type:rodata align:32
+	.sbss2      type:bss align:32
+
+egg/core/eggDisposer.cpp:
+	.text       start:0x800AC4CC end:0x800AC594
+	.data       start:0x8032DEB8 end:0x8032DEC8
+
+Runtime.PPCEABI.H/__init_cpp_exceptions.cpp:
+	.text       start:0x800B278C end:0x800B27FC
+	.ctors      start:0x802E9CC0 end:0x802E9CC4 rename:.ctors$10
+	.dtors      start:0x802E9E40 end:0x802E9E44 rename:.dtors$10
+	.dtors      start:0x802E9E44 end:0x802E9E48 rename:.dtors$15
+	.sdata      start:0x8043AC70 end:0x8043AC78

@@ -28,9 +28,10 @@ from tools.project import (
 )
 
 # Game versions
-DEFAULT_VERSION = 1  # BBA: WD has a debug linker map - target that primarily
+DEFAULT_VERSION = 2  # BBA: WD has a debug linker map - target that primarily
 VERSIONS = [
     "RSPE01",  # Wii Sports (USA, Rev 1)
+    "RHAE01",  # Wii Play (USA, Rev 1)
     "RYWE01",  # Big Brain Academy: Wii Degree (USA)
     "RMCP01",  # Mario Kart Wii (PAL)
     "RFNE01",  # Wii Fit (USA, Rev 1)
@@ -43,6 +44,7 @@ VERSIONS = [
 
 class EGGApp(IntEnum):
     OGWS = VERSIONS.index("RSPE01")
+    WP = VERSIONS.index("RHAE01")
     BBA_WD = VERSIONS.index("RYWE01")
     MKW = VERSIONS.index("RMCP01")
     WF = VERSIONS.index("RFNE01")
@@ -57,6 +59,8 @@ def get_build_version_number(version_num: int) -> str:
     match version_num:
         case EGGApp.OGWS:
             return "200611L"
+        case EGGApp.WP:
+            return "200702L"
         case EGGApp.BBA_WD:
             return "200704L"
         case EGGApp.MKW:
@@ -79,7 +83,7 @@ def get_build_version_number(version_num: int) -> str:
 def get_config_linker_version(version_num: int) -> str:
     match version_num:
         # AC_CF and WF's linker version isn't known. Guess based on build strings
-        case EGGApp.OGWS | EGGApp.BBA_WD | EGGApp.WF | EGGApp.AC_CF:
+        case EGGApp.OGWS | EGGApp.WP | EGGApp.BBA_WD | EGGApp.WF | EGGApp.AC_CF:
             return "GC/3.0a5.2"
         case EGGApp.MKW:
             return "Wii/0x4201_127"
@@ -120,6 +124,7 @@ def get_egg_compiler_flags(version_num: int) -> List[str]:
     match version_num:
         case (
             EGGApp.OGWS
+            | EGGApp.WP
             | EGGApp.BBA_WD
             | EGGApp.WF
             | EGGApp.WM
