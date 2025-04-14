@@ -1,0 +1,5 @@
+object: orig/RFNE01/sys/main.dol
+hash: a5aafad2cf9c1661c626e2515cc7076f5ec98e53
+symbols: config/RFNE01/symbols.txt
+splits: config/RFNE01/splits.txt
+mw_comment_version: 14

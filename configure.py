@@ -33,6 +33,7 @@ VERSIONS = [
     "RSPE01",  # Wii Sports (USA, Rev 1)
     "RYWE01",  # Big Brain Academy: Wii Degree (USA)
     "RMCP01",  # Mario Kart Wii (PAL)
+    "RFNE01",  # Wii Fit (USA, Rev 1)
     "RUUE01",  # Animal Crossing: City Folk (USA, Rev 0)
     "SMNP01",  # New Super Mario Bros. Wii (PAL, Rev 1)
     "SOUE01",  # The Legend of Zelda: Skyward Sword (USA, Rev 0)
@@ -43,6 +44,7 @@ class EGGApp(IntEnum):
     OGWS = VERSIONS.index("RSPE01")
     BBA_WD = VERSIONS.index("RYWE01")
     MKW = VERSIONS.index("RMCP01")
+    WF = VERSIONS.index("RFNE01")
     AC_CF = VERSIONS.index("RUUE01")
     NSMBW = VERSIONS.index("SMNP01")
     LOZ_SS = VERSIONS.index("SOUE01")
@@ -57,6 +59,8 @@ def get_build_version_number(version_num: int) -> str:
             return "200704L"
         case EGGApp.MKW:
             return "200804L"
+        case EGGApp.WF:
+            return "200805L"
         case EGGApp.AC_CF:
             return "200811L"
         case EGGApp.NSMBW:
@@ -70,8 +74,8 @@ def get_build_version_number(version_num: int) -> str:
 # Specifies linker version per game
 def get_config_linker_version(version_num: int) -> str:
     match version_num:
-        # AC_CF's linker version isn't known. Guess based on build strings
-        case EGGApp.OGWS | EGGApp.BBA_WD | EGGApp.AC_CF:
+        # AC_CF and WF's linker version isn't known. Guess based on build strings
+        case EGGApp.OGWS | EGGApp.BBA_WD | EGGApp.WF | EGGApp.AC_CF:
             return "GC/3.0a5.2"
         case EGGApp.MKW:
             return "Wii/0x4201_127"
@@ -110,15 +114,12 @@ def get_egg_compiler_flags(version_num: int) -> List[str]:
     ]
 
     match version_num:
-        case EGGApp.OGWS | EGGApp.BBA_WD | EGGApp.NSMBW | EGGApp.LOZ_SS:
+        case EGGApp.OGWS | EGGApp.BBA_WD | EGGApp.WF | EGGApp.NSMBW | EGGApp.LOZ_SS:
             return [
                 *base_flags,
             ]
         case EGGApp.MKW:
-            return [
-                *base_flags,
-                "-func_align=4"
-            ]
+            return [*base_flags, "-func_align=4"]
         case EGGApp.AC_CF:
             return [
                 *base_flags,
@@ -346,9 +347,11 @@ def Rel(lib_name: str, objects: List[Object]) -> Dict[str, Any]:
     }
 
 
-Matching = True                   # Object matches and should be linked
-NonMatching = False               # Object does not match and should not be linked
-Equivalent = config.non_matching  # Object should be linked when configured with --non-matching
+Matching = True  # Object matches and should be linked
+NonMatching = False  # Object does not match and should not be linked
+Equivalent = (
+    config.non_matching
+)  # Object should be linked when configured with --non-matching
 
 
 # Object is only matching for specific versions
@@ -393,6 +396,7 @@ def link_order_callback(module_id: int, objects: List[str]) -> List[str]:
     if module_id == 0:  # DOL
         return objects + ["dummy.c"]
     return objects
+
 
 # Uncomment to enable the link order callback.
 # config.link_order_callback = link_order_callback
