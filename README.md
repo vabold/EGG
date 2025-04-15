@@ -14,6 +14,7 @@ The goal of this repository is to provide one set of source files supporting all
 Supported versions:
 
 - `R64E01`: Wii Music (USA)
+- `R92E01`: New Play Control! Pikmin 2 (USA)
 - `R9IE01`: New Play Control! Pikmin (USA)
 - `RFNE01`: Wii Fit (USA, Rev 1)
 - `RFPE01`: Wii Fit Plus (USA)

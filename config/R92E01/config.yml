@@ -1,0 +1,5 @@
+object: orig/R92E01/sys/main.dol
+hash: d69f9083b7c47665a4f701099ec029176f2e3aeb
+symbols: config/R92E01/symbols.txt
+splits: config/R92E01/splits.txt
+mw_comment_version: 14
