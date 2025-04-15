@@ -37,6 +37,7 @@ VERSIONS = [
     "RFNE01",  # Wii Fit (USA, Rev 1)
     "R64E01",  # Wii Music (USA)
     "RUUE01",  # Animal Crossing: City Folk (USA, Rev 0)
+    "R9IE01",  # Pikmin (USA)
     "RFPE01",  # Wii Fit Plus (USA)
     "SMNP01",  # New Super Mario Bros. Wii (PAL, Rev 1)
     "RZTE01",  # Wii Sports Resort (USA, Rev 1)
@@ -52,6 +53,7 @@ class EGGApp(IntEnum):
     WF = VERSIONS.index("RFNE01")
     WM = VERSIONS.index("R64E01")
     AC_CF = VERSIONS.index("RUUE01")
+    PIKMIN1 = VERSIONS.index("R9IE01")
     WFP = VERSIONS.index("RFPE01")
     NSMBW = VERSIONS.index("SMNP01")
     WSR = VERSIONS.index("RZTE01")
@@ -75,6 +77,8 @@ def get_build_version_number(version_num: int) -> str:
             return "200810L"
         case EGGApp.AC_CF:
             return "200811L"
+        case EGGApp.PIKMIN1:
+            return "200903L"
         case EGGApp.WFP:
             return "200910L"
         case EGGApp.NSMBW:
@@ -91,7 +95,7 @@ def get_build_version_number(version_num: int) -> str:
 def get_config_linker_version(version_num: int) -> str:
     match version_num:
         # AC_CF and WF's linker version isn't known. Guess based on build strings
-        case EGGApp.OGWS | EGGApp.WP | EGGApp.BBA_WD | EGGApp.WF | EGGApp.AC_CF:
+        case EGGApp.OGWS | EGGApp.WP | EGGApp.BBA_WD | EGGApp.WF | EGGApp.AC_CF | EGGApp.PIKMIN1:
             return "GC/3.0a5.2"
         case EGGApp.MKW:
             return "Wii/0x4201_127"
@@ -136,6 +140,7 @@ def get_egg_compiler_flags(version_num: int) -> List[str]:
             | EGGApp.BBA_WD
             | EGGApp.WF
             | EGGApp.WM
+            | EGGApp.PIKMIN1
             | EGGApp.WFP
             | EGGApp.NSMBW
             | EGGApp.WSR

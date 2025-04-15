@@ -1,0 +1,5 @@
+object: orig/R9IE01/sys/main.dol
+hash: 551306334183a633d0fde434a930b98809433b70
+symbols: config/R9IE01/symbols.txt
+splits: config/R9IE01/splits.txt
+mw_comment_version: 14
