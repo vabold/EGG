@@ -1,0 +1,5 @@
+object: orig/RZTE01/sys/main.dol
+hash: e3e22a9de62f6e11ded52e9a7e6933892963b219
+symbols: config/RZTE01/symbols.txt
+splits: config/RZTE01/splits.txt
+mw_comment_version: 14

@@ -39,6 +39,7 @@ VERSIONS = [
     "RUUE01",  # Animal Crossing: City Folk (USA, Rev 0)
     "RFPE01",  # Wii Fit Plus (USA)
     "SMNP01",  # New Super Mario Bros. Wii (PAL, Rev 1)
+    "RZTE01",  # Wii Sports Resort (USA, Rev 1)
     "SOUE01",  # The Legend of Zelda: Skyward Sword (USA, Rev 0)
 ]
 
@@ -53,6 +54,7 @@ class EGGApp(IntEnum):
     AC_CF = VERSIONS.index("RUUE01")
     WFP = VERSIONS.index("RFPE01")
     NSMBW = VERSIONS.index("SMNP01")
+    WSR = VERSIONS.index("RZTE01")
     LOZ_SS = VERSIONS.index("SOUE01")
 
 
@@ -77,6 +79,8 @@ def get_build_version_number(version_num: int) -> str:
             return "200910L"
         case EGGApp.NSMBW:
             return "200911L"
+        case EGGApp.WSR:
+            return "201006L"
         case EGGApp.LOZ_SS:
             return "201111L"
         case _:
@@ -91,7 +95,7 @@ def get_config_linker_version(version_num: int) -> str:
             return "GC/3.0a5.2"
         case EGGApp.MKW:
             return "Wii/0x4201_127"
-        case EGGApp.WM | EGGApp.WFP | EGGApp.NSMBW:
+        case EGGApp.WM | EGGApp.WFP | EGGApp.NSMBW | EGGApp.WSR:
             return "Wii/1.1"
         case EGGApp.LOZ_SS:
             return "Wii/1.5"
@@ -134,6 +138,7 @@ def get_egg_compiler_flags(version_num: int) -> List[str]:
             | EGGApp.WM
             | EGGApp.WFP
             | EGGApp.NSMBW
+            | EGGApp.WSR
             | EGGApp.LOZ_SS
         ):
             return [
