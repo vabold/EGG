@@ -1,0 +1,5 @@
+object: orig/RFPE01/sys/main.dol
+hash: 9f79b83070e0c263257b4fa33b54983be0eefe82
+symbols: config/RFPE01/symbols.txt
+splits: config/RFPE01/splits.txt
+mw_comment_version: 14
